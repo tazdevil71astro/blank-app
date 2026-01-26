@@ -15,3 +15,4 @@ st.write(
 )
 
 st.write("verif MAJ")
+st.write(SkyCoord.from_name("m33"))

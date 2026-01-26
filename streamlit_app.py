@@ -14,7 +14,6 @@ st.write(
     "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
 )
 
-st.write("verif MAJ")
 st.write(SkyCoord.from_name("m33"))
 
 st.write(SkyCoord.from_name("m31"))

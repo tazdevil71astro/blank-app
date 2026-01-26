@@ -6,7 +6,6 @@ from astropy.coordinates import AltAz, EarthLocation, SkyCoord, get_body, get_su
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-import matplotlib.pyplot as plt
 
 
 

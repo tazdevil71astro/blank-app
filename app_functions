@@ -1,0 +1,81 @@
+#Fonction qui retourne les changements de signe d'un vecteur altitude
+#Renvoie 2 vecteurs : le premier c'est les indices de lever de lune, le second pour les couchers de lune
+def moon_set_rise(vect_alt):
+    moon_set = []
+    moon_rise = []
+    for i in range (1,len(vect_alt)):
+        if (vect_alt[i-1]*vect_alt[i] < 0) and (vect_alt[i]<0) :
+            moon_set.append(i)
+        if (vect_alt[i-1]*vect_alt[i] < 0) and (vect_alt[i]>0) :
+            moon_rise.append(i)
+    return (moon_set,moon_rise)
+
+def moon_curve(T_obs_day):
+    
+    #creation des heures d'obs (16h - 9h) ramenées en utc
+    delta = np.arange(240,1261,1) * u.minute
+    times_obs_utc = T_obs_day + delta
+
+    #calcul courbe de la lune
+    frame_night_obs_utc = AltAz(obstime=times_obs_utc, location=ARO)
+    moon_night_obs_utc = get_body("moon", times_obs_utc)
+    moon_altaz_night_obs_utc = moon_night_obs_utc.transform_to(frame_night_obs_utc)
+
+    return moon_altaz_night_obs_utc.alt
+
+def moon_set_time_local (date_np64,vecteur_indice):
+    if len(vecteur_indice[0])==1 :
+        return date_np64 + np.timedelta64(240+vecteur_indice[0][0],'m')
+    else :
+        return None
+
+def moon_rise_time_local (date_np64,vecteur_indice):
+    if len(vecteur_indice[1])==1 :
+        return date_np64 + np.timedelta64(240+vecteur_indice[1][0],'m')
+    else :
+        return None
+
+# Calcul de la courbe d'altitude du soleil
+
+def sun_curve(T_obs_day):
+    #creation des heures d'obs (16h - 9h) ramenées en utc
+    delta = np.arange(240,1261,1) * u.minute
+    times_obs_utc = T_obs_day + delta
+    sun_points = AltAz(obstime=times_obs_utc, location=ARO)
+    sun_curve = get_sun(times_obs_utc).transform_to(sun_points)
+    return sun_curve.alt
+
+def sun_ephem(vect_alt):
+    i=0
+    while vect_alt[i]>0:
+        i=i+1
+    i_sunset = i
+
+    while vect_alt[i]>(-6 *u.deg):
+        i=i+1
+    i_crepus_civil = i #debut crepuscule nautique
+
+    while vect_alt[i]>(-12 *u.deg):
+        i=i+1
+    i_crepus_nautique = i # debut crepuscule astro
+
+    while vect_alt[i]>(-18 *u.deg):
+        i=i+1
+    i_crepus_astro = i #debut nuit astro
+
+    while vect_alt[i]<(-18 *u.deg):
+        i=i+1
+    i_aube_astro = i # debut aube astro
+
+    while vect_alt[i]<(-12 *u.deg):
+        i=i+1
+    i_aube_nautique = i # debut aube nautique
+
+    while vect_alt[i]<(-6 *u.deg):
+        i=i+1
+    i_aube_civile = i # debut aube civil
+
+    while vect_alt[i]<(0 *u.deg):
+        i=i+1
+    i_sunrise = i # debut aube civil
+    return [i_sunset,i_crepus_nautique,i_crepus_astro,i_aube_nautique,i_sunrise]

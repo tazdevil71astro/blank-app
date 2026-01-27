@@ -7,6 +7,19 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
+#Definition site observation
+site_lat = 38.23469
+site_long = -7.56981
+site_alt = 260
+site_utc_offset = 0
+
+ARO = EarthLocation(lat = site_lat * u.deg,
+                    lon = site_long * u.deg,
+                    height = site_alt * u.m)
+
+
+
+
 # Chargement fichier des cibles dans un data frame
 pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")
                               

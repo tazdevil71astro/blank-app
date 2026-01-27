@@ -36,6 +36,11 @@ else :
 d = st.date_input("Choisir une nuit d'observation :", datetime.date(tmp.year, tmp.month, tmp.day))
 
 st.write("Nuit choisie :", d)
+st.write("Année :", d.year)
+st.write("Mois :", d.month)
+st.write("Jour :", d.day)
+
+
 
 #Day_obs = str_year + '-'+ str_month + '-' + str_day + 'T12:00:00'
 

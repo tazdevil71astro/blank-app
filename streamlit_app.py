@@ -8,6 +8,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import datetime
 
+from app_function import transfo_date_to_isostr
+
 #Definition site observation : tour de Belem à Lisbonne
 site_lat = 38.67201
 site_long = -9.23275

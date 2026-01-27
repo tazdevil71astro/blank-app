@@ -26,9 +26,7 @@ input_date = st.date_input("Choisir une nuit d'observation :",
 
 
 #Transformation de la date sélectionnée au format str isot pour utilisation dans le graphe
-
-
-st.write("Nuit choisie format date :", d)
+st.write("Nuit choisie format date :", today_date)
 st.write("Nuit choisie format str isot :", transfo_date_to_isostr(input_date))
 
 

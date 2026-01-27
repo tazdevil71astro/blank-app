@@ -79,3 +79,16 @@ def sun_ephem(vect_alt):
         i=i+1
     i_sunrise = i # debut aube civil
     return [i_sunset,i_crepus_nautique,i_crepus_astro,i_aube_nautique,i_sunrise]
+
+def transfo_date_to_isostr(date)
+    str_year  = str(date.year)
+    if date.month < 10:
+        str_month = '0' + str(date.month)
+    else :
+        str_month = str(date.month)
+    
+    if date.day < 10:
+        str_day = '0' + str(date.day)
+    else :
+        str_day = str(date.day)
+    return str_year + '-'+ str_month + '-' + str_day + 'T12:00:00'

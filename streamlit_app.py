@@ -18,31 +18,15 @@ ARO = EarthLocation(lat = site_lat * u.deg,
                     lon = site_long * u.deg,
                     height = site_alt * u.m)
 
-# Widget Choix date
-tmp = datetime.date.today()
+# Widget Choix date initialisée à la date du jour
+today_date = datetime.date.today()
+input_date = st.date_input("Choisir une nuit d'observation :", datetime.date(tmp.year, tmp.month, tmp.day))
 
-str_year  = str(tmp.year)
-if tmp.month < 10:
-    str_month = '0' + str(tmp.month)
-else :
-    str_month = str(tmp.month)
-    
-if tmp.day < 10:
-    str_day = '0' + str(tmp.day)
-else :
-    str_day = str(tmp.day)
+#Transformation de la date sélectionnée au format str isot pour utilisation dans le graphe
 
 
-d = st.date_input("Choisir une nuit d'observation :", datetime.date(tmp.year, tmp.month, tmp.day))
-
-st.write("Nuit choisie :", d)
-st.write("Année :", d.year)
-st.write("Mois :", d.month)
-st.write("Jour :", d.day)
-
-
-
-#Day_obs = str_year + '-'+ str_month + '-' + str_day + 'T12:00:00'
+st.write("Nuit choisie format date :", d)
+st.write("Nuit choisie format str isot :", transfo_date_to_isostr(input_date))
 
 
 # Chargement fichier des cibles dans un data frame

@@ -38,8 +38,6 @@ pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")
 
 st.title("🎈 Graphique cible Nuit🎈")
 
-
-#Day_obs = '2026-01-27T12:00:00'
 T_Day_obs_utc = Time(Day_obs,format ='isot',scale ='utc') - site_utc_offset*u.hour #UTC
 T_Day_obs_np64 = np.datetime64(Day_obs)
 

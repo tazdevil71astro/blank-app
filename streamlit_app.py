@@ -7,10 +7,10 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
-#Definition site observation
-site_lat = 38.23469
-site_long = -7.56981
-site_alt = 260
+#Definition site observation : tour de Belem à Lisbonne
+site_lat = 38.67201
+site_long = -9.23275
+site_alt = 10
 site_utc_offset = 0
 
 ARO = EarthLocation(lat = site_lat * u.deg,

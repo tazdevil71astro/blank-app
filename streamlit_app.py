@@ -24,7 +24,8 @@ ARO = EarthLocation(lat = site_lat * u.deg,
 today_date = datetime.date.today()
 input_date = st.date_input("Choisir une nuit d'observation :",
                 datetime.date(today_date.year,
-                today_date.month, today_date.day),
+                    today_date.month, 
+                    today_date.day),
                 format = "DD/MM/YYYY")
 
 
@@ -32,6 +33,11 @@ input_date = st.date_input("Choisir une nuit d'observation :",
 st.write("Nuit choisie format date :", input_date)
 st.write("Nuit choisie format str isot :", transfo_date_to_isostr(input_date))
 Day_obs = transfo_date_to_isostr(input_date)
+
+#Test bouton +1 mois
+st.button("+30 jours", type="primary")
+if st.button("+30 jours",):
+    input_date = input_date + timedelta(days=30)
 
 # Chargement fichier des cibles dans un data frame
 pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")

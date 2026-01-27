@@ -35,9 +35,8 @@ st.write("Nuit choisie format str isot :", transfo_date_to_isostr(input_date))
 Day_obs = transfo_date_to_isostr(input_date)
 
 #Test bouton +1 mois
-st.button("+30 jours", type="primary")
 if st.button("+30 jours",):
-    input_date = input_date + timedelta(days=30)
+    input_date.day = input_date.day+ 30
 
 # Chargement fichier des cibles dans un data frame
 pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")

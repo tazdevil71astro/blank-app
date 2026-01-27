@@ -6,6 +6,7 @@ from astropy.coordinates import AltAz, EarthLocation, SkyCoord, get_body, get_su
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
+import datetime
 
 #Definition site observation : tour de Belem à Lisbonne
 site_lat = 38.67201
@@ -16,6 +17,10 @@ site_utc_offset = 0
 ARO = EarthLocation(lat = site_lat * u.deg,
                     lon = site_long * u.deg,
                     height = site_alt * u.m)
+
+# Widget Choix date
+d = st.date_input("Choiir une nuit d'observation :", datetime.date(2026, 1, 27))
+st.write("Nuit choisie :", d)
 
 
 

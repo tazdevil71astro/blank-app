@@ -19,10 +19,24 @@ ARO = EarthLocation(lat = site_lat * u.deg,
                     height = site_alt * u.m)
 
 # Widget Choix date
-d = st.date_input("Choiir une nuit d'observation :", datetime.date(2026, 1, 27))
+tmp = datetime.date.today()
+
+str_year  = str(tmp.year)
+if tmp.month < 10:
+    str_month = '0' + str(tmp.month)
+else :
+    str_month = str(tmp.month)
+    
+if tmp.day < 10:
+    str_day = '0' + str(tmp.day)
+else :
+    str_day = str(tmp.day)
+
+d = st.date_input("Choisir une nuit d'observation :", datetime.date(str_year, str_month, str_day))
+
 st.write("Nuit choisie :", d)
 
-
+#Day_obs = str_year + '-'+ str_month + '-' + str_day + 'T12:00:00'
 
 
 # Chargement fichier des cibles dans un data frame

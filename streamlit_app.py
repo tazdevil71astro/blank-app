@@ -38,14 +38,12 @@ times_day_obs_utc = T_Day_obs_utc + delta
 
 date_range_heure = np.arange(T_Day_obs_np64+np.timedelta64(240,'m'), T_Day_obs_np64+np.timedelta64(1261,'m'), np.timedelta64(1, 'm'))
 
-
-
 fig = go.Figure()
 
 frame_date = AltAz(obstime=T_Day_obs_utc + delta, location=ARO)
 
 #Parcours du fichier lu pour tracer les altitudes de toutes les cibles
-for j in range(3):
+for j in range(2):
     tmp_cible_coord = SkyCoord(float(pd_infos_cibles['RA'][j].replace(',','.')),
                                float(pd_infos_cibles['DEC'][j].replace(',','.')),
                                unit="deg")

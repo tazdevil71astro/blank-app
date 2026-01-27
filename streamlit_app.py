@@ -7,13 +7,41 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
+# Chargement fichier des cibles dans un data frame
+pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")
+                              
+
+st.title("🎈 Graphique cible Nuit🎈")
 
 
-st.title("🎈 My new Streamlit app🎈")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
+Day_obs = '2026-01-27T12:00:00'
+T_Day_obs_utc = Time(Day_obs,format ='isot',scale ='utc') - site_utc_offset*u.hour #UTC
+T_Day_obs_np64 = np.datetime64(Day_obs)
 
-st.write(SkyCoord.from_name("m33"))
+#creation des heures d'obs (16h - 9h) ramenées en utc
+delta = np.arange(240,1261,1) * u.minute
+times_day_obs_utc = T_Day_obs_utc + delta
 
-st.write(SkyCoord.from_name("m31"))
+
+date_range_heure = np.arange(T_Day_obs_np64+np.timedelta64(240,'m'), T_Day_obs_np64+np.timedelta64(1261,'m'), np.timedelta64(1, 'm'))
+
+
+
+fig = go.Figure()
+
+frame_date = AltAz(obstime=T_Day_obs_utc + delta, location=ARO)
+
+#Parcours du fichier lu pour tracer les altitudes de toutes les cibles
+for j in range(3):
+    tmp_cible_coord = SkyCoord(float(pd_infos_cibles['RA'][j].replace(',','.')),
+                               float(pd_infos_cibles['DEC'][j].replace(',','.')),
+                               unit="deg")
+    tmp_cible_altaz = tmp_cible_coord.transform_to(frame_date)
+    fig.add_trace(go.Scatter(x=date_range_heure, y=tmp_cible_altaz.alt,mode='lines',
+                        name = pd_infos_cibles['Cible'][j] + "- lune à 70°"))
+   
+#fig.update_layout(plot_bgcolor='white')
+fig.update_yaxes(range=[0, 90])
+
+
+st.plotly_chart(fig)

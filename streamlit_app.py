@@ -30,7 +30,7 @@ input_date = st.date_input("Choisir une nuit d'observation :",
 #Transformation de la date sélectionnée au format str isot pour utilisation dans le graphe
 st.write("Nuit choisie format date :", input_date)
 st.write("Nuit choisie format str isot :", transfo_date_to_isostr(input_date))
-
+Day_obs = transfo_date_to_isostr(input_date)
 
 # Chargement fichier des cibles dans un data frame
 pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")
@@ -39,7 +39,7 @@ pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")
 st.title("🎈 Graphique cible Nuit🎈")
 
 
-Day_obs = '2026-01-27T12:00:00'
+#Day_obs = '2026-01-27T12:00:00'
 T_Day_obs_utc = Time(Day_obs,format ='isot',scale ='utc') - site_utc_offset*u.hour #UTC
 T_Day_obs_np64 = np.datetime64(Day_obs)
 

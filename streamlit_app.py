@@ -32,7 +32,7 @@ if tmp.day < 10:
 else :
     str_day = str(tmp.day)
 
-d = st.date_input("Choisir une nuit d'observation :", datetime.date(str_year, str_month, str_day))
+d = st.date_input("Choisir une nuit d'observation :", datetime.date(tmp.year, tmp.month, tmp.day))
 
 st.write("Nuit choisie :", d)
 

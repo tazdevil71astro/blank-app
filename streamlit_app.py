@@ -22,22 +22,23 @@ ARO = EarthLocation(lat = site_lat * u.deg,
 
 # Widget Choix date initialisée à la date du jour
 today_date = datetime.date.today()
-select_date = today_date
+
 input_date = st.date_input("Choisir une nuit d'observation :",
                 datetime.date(select_date.year,
                     select_date.month, 
                     select_date.day),
                 format = "DD/MM/YYYY")
 
+select_date = input_date
 
 #Transformation de la date sélectionnée au format str isot pour utilisation dans le graphe
-st.write("Nuit choisie format date :", input_date)
-st.write("Nuit choisie format str isot :", transfo_date_to_isostr(input_date))
+st.write("Nuit choisie format date :", select_date)
+st.write("Nuit choisie format str isot :", transfo_date_to_isostr(select_date))
 Day_obs = transfo_date_to_isostr(select_date)
 
 #Test bouton +1 mois
-if st.button("+1"):
-    select_date = select_date + datetime.timedelta(days=1)
+if st.button("+10"):
+    select_date = select_date + datetime.timedelta(days=10)
 
 # Chargement fichier des cibles dans un data frame
 pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")

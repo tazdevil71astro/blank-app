@@ -34,11 +34,14 @@ select_date = input_date
 #Transformation de la date sélectionnée au format str isot pour utilisation dans le graphe
 st.write("Nuit choisie format date :", select_date)
 st.write("Nuit choisie format str isot :", transfo_date_to_isostr(select_date))
-Day_obs = transfo_date_to_isostr(select_date)
 
 #Test bouton +1 mois
 if st.button("+10"):
     select_date = select_date + datetime.timedelta(days=10)
+
+Day_obs = transfo_date_to_isostr(select_date)
+
+
 
 # Chargement fichier des cibles dans un data frame
 pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")

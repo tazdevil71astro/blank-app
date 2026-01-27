@@ -23,8 +23,9 @@ ARO = EarthLocation(lat = site_lat * u.deg,
 # Widget Choix date initialisée à la date du jour
 today_date = datetime.date.today()
 input_date = st.date_input("Choisir une nuit d'observation :",
-                            datetime.date(today_date.year,
-                                           today_date.month, today_date.day))
+                datetime.date(today_date.year,
+                today_date.month, today_date.day),
+                format = "DD/MM/YYYY")
 
 
 #Transformation de la date sélectionnée au format str isot pour utilisation dans le graphe

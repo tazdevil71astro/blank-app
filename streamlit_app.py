@@ -61,7 +61,7 @@ fig = go.Figure()
 frame_date = AltAz(obstime=T_Day_obs_utc + delta, location=ARO)
 
 #Parcours du fichier lu pour tracer les altitudes de toutes les cibles
-for j in range(2):
+for j in range(10):
     tmp_cible_coord = SkyCoord(float(pd_infos_cibles['RA'][j].replace(',','.')),
                                float(pd_infos_cibles['DEC'][j].replace(',','.')),
                                unit="deg")

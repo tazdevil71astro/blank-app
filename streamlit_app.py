@@ -41,8 +41,8 @@ Day_obs = transfo_date_to_isostr(input_date)
 
 
 # Chargement fichier des cibles dans un data frame
-#pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")
-pd_infos_cibles = pd.read_csv("Cibles_en_cours.csv",sep = ";")                             
+pd_infos_cibles = pd.read_csv("TEST_IMPORT_EPHEMERIDES.csv",sep = ";")
+#pd_infos_cibles = pd.read_csv("Cibles_en_cours.csv",sep = ";")                             
 
 st.title("🎈 Graphique cible Nuit🎈")
 
